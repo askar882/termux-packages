@@ -57,6 +57,7 @@ termux_step_configure() {
 	QEMU_TARGETS+="riscv32-softmmu,"
 	QEMU_TARGETS+="riscv64-softmmu,"
 	QEMU_TARGETS+="x86_64-softmmu,"
+	QEMU_TARGETS+="mipsel-softmmu,"
 
 	# User mode emulation.
 	QEMU_TARGETS+="aarch64-linux-user,"
@@ -67,7 +68,8 @@ termux_step_configure() {
 	QEMU_TARGETS+="ppc-linux-user,"
 	QEMU_TARGETS+="riscv32-linux-user,"
 	QEMU_TARGETS+="riscv64-linux-user,"
-	QEMU_TARGETS+="x86_64-linux-user"
+	QEMU_TARGETS+="x86_64-linux-user,"
+	QEMU_TARGETS+="mipsel-linux-user"
 
 	CFLAGS+=" $CPPFLAGS"
 	CXXFLAGS+=" $CPPFLAGS"
@@ -132,7 +134,7 @@ termux_step_configure() {
 
 termux_step_post_make_install() {
 	local i
-	for i in aarch64 arm i386 m68k ppc ppc64 riscv32 riscv64 x86_64; do
+	for i in aarch64 arm i386 m68k ppc ppc64 riscv32 riscv64 x86_64 mipsel; do
 		ln -sfr \
 			"${TERMUX_PREFIX}"/share/man/man1/qemu.1 \
 			"${TERMUX_PREFIX}"/share/man/man1/qemu-system-${i}.1
